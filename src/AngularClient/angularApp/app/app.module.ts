@@ -42,12 +42,12 @@ export class AppModule {
     constructor(public oidcSecurityService: OidcSecurityService) {
 
         let openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
-        openIDImplicitFlowConfiguration.stsServer = 'https://accounts.google.com';
-        openIDImplicitFlowConfiguration.redirect_url = 'https://localhost:44386';
-        openIDImplicitFlowConfiguration.client_id = '188968487735-b1hh7k87nkkh6vv84548sinju2kpr7gn.apps.googleusercontent.com';
+        openIDImplicitFlowConfiguration.stsServer = 'https://sso.host.com:8443/auth/realms/YOUR-REALM/protocol/openid-connect/auth/';
+        openIDImplicitFlowConfiguration.redirect_url = 'https://localhost:8080';
+        openIDImplicitFlowConfiguration.client_id = 'angularjs';
         openIDImplicitFlowConfiguration.response_type = 'id_token token';
         openIDImplicitFlowConfiguration.scope = 'openid email profile';
-        openIDImplicitFlowConfiguration.post_logout_redirect_uri = 'https://localhost:44386/Unauthorized';
+        openIDImplicitFlowConfiguration.post_logout_redirect_uri = 'https://localhost:8080/Unauthorized';
         openIDImplicitFlowConfiguration.post_login_route = '/home';
         openIDImplicitFlowConfiguration.forbidden_route = '/Forbidden';
         openIDImplicitFlowConfiguration.unauthorized_route = '/Unauthorized';
@@ -56,7 +56,7 @@ export class AppModule {
         openIDImplicitFlowConfiguration.log_console_debug_active = true;
         openIDImplicitFlowConfiguration.max_id_token_iat_offset_allowed_in_seconds = 20;
         openIDImplicitFlowConfiguration.override_well_known_configuration = false;
-        openIDImplicitFlowConfiguration.override_well_known_configuration_url = 'https://localhost:44386/wellknownconfiguration.json';
+        openIDImplicitFlowConfiguration.override_well_known_configuration_url = 'https://sso.host.com:8443/auth/realms/YOUR-REALM/wellknownconfiguration.json';
 
         this.oidcSecurityService.setupModule(openIDImplicitFlowConfiguration);
     }
